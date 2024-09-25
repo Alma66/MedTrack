@@ -38,3 +38,22 @@ class Medicamento:
         
         # Si no se encuentra el medicamento
         print("El medicamento no se encuentra en la lista.")
+
+    # Creamos metodo para editar y actualizar los datos del medicamento
+    def editar_medicamento(self, id_med, nombre=None, detalles=None, efec_secun=None):
+        # Buscamos el medicamento que se va a editar
+        for medicamento in Medicamento.lista_medicamentos:
+            if medicamento.id_med == id_med:  # Acceder al atributo de instancia
+                # Actualizamos los atributos solo si se proporcionan nuevos valores
+                if nombre is not None:
+                    medicamento.nombre = nombre
+                if detalles is not None:
+                    medicamento.detalles = detalles
+                if efec_secun is not None:
+                    medicamento.efec_secun = efec_secun
+                
+                print("El medicamento se actualizó correctamente.")
+                return
+        
+        # Si no se encuentra el medicamento
+        print("El medicamento no se encuentra en la lista.")

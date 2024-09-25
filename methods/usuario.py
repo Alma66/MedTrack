@@ -42,3 +42,29 @@ class Usuario:
         
         # Si no se encuentra el usuario
         print("El usuario no se encuentra en la lista.")
+
+    # Creamos metodo para editar y actualizar los datos del usuario
+    def editar_usuario(self, id_user, nombre=None, apellido=None, fecha_nac=None, sexo=None, mail=None, contraseña=None):
+        # Buscamos el usuario que se va a editar
+        for usuario in Usuario.lista_usuarios:
+            if usuario.id_user == id_user:
+                # Actualizamos los atributos solo si se proporcionan nuevos valores
+                # is not None = para verificar si que un valor no este vacio ni sea nulo
+                if nombre is not None:
+                    usuario.nombre = nombre
+                if apellido is not None:
+                    usuario.apellido = apellido
+                if fecha_nac is not None:
+                    usuario.fecha_nac = fecha_nac
+                if sexo is not None:
+                    usuario.sexo = sexo
+                if mail is not None:
+                    usuario.mail = mail
+                if contraseña is not None:
+                    usuario.contraseña = contraseña
+                
+                print("El usuario se actualizó correctamente.")
+                return
+        
+        # Si no se encuentra el usuario
+        print("El usuario no se encuentra en la lista.")

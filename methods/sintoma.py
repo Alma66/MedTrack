@@ -37,4 +37,22 @@ class Sintoma:
             # Si no se encuentra el síntoma
             print("El síntoma no se encuentra en la lista.")
 
+     # Creamos metodo para editar y actualizar los datos del sintoma
+    def editar_sintoma(self, id_sintoma, nombre=None, descripcion=None):
+        # Buscamos el sintoma que se va a editar
+        for sintoma in Sintoma.lista_sintomas:
+            if sintoma.id_sintoma == id_sintoma:
+                # Actualizamos los atributos solo si se proporcionan nuevos valores
+                # is not None = para verificar si que un valor no este vacio ni sea nulo
+                if nombre is not None:
+                    sintoma.nombre = nombre
+                if descripcion is not None:
+                    sintoma.descripcion = descripcion
+                
+                print("El sintoma se actualizó correctamente.")
+                return
+        
+        # Si no se encuentra el sintoma
+        print("El sintoma no se encuentra en la lista.")
+
               

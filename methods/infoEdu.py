@@ -23,13 +23,13 @@ class InfoEdu:
         InfoEdu.lista_info_edu.append(nueva_info)
         print("La información educativa se agregó correctamente.")
 
-     # Mostramos cada información educativa y sus datos
+    # Mostramos cada información educativa y sus datos
     def __str__(self):
         return (f"Informacion Educacional(id_info={self.id_info}, titulo={self.titulo}, "
                 f"contenido={self.contenido}, creditos={self.creditos}, "
                 f"id_user={self.id_user})")
 
-     # Creamos metodo para eliminar información educativa
+    # Creamos metodo para eliminar información educativa
     def eliminar_info(self, id_info):
         # Buscar y eliminar la información educativa
         for info in InfoEdu.lista_info_edu:
@@ -39,4 +39,25 @@ class InfoEdu:
                 return
         
         # Si no se encuentra la información
+        print("La información educativa no se encuentra en la lista.")
+
+    # Creamos metodo para editar y actualizar los datos de la información educativa
+    def editar_info(self, id_info, titulo=None, contenido=None, creditos=None, id_user=None):
+        # Buscamos la información educativa que se va a editar
+        for info in InfoEdu.lista_info_edu:
+            if info.id_info == id_info:  # Acceder al atributo de instancia
+                # Actualizamos los atributos solo si se proporcionan nuevos valores
+                if titulo is not None:
+                    info.titulo = titulo
+                if contenido is not None:
+                    info.contenido = contenido
+                if creditos is not None:
+                    info.creditos = creditos
+                if id_user is not None:
+                    info.id_user = id_user
+                
+                print("La información educativa se actualizó correctamente.")
+                return
+        
+        # Si no se encuentra la información educativa
         print("La información educativa no se encuentra en la lista.")
