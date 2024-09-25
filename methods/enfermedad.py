@@ -37,3 +37,21 @@ class Enfermedad:
         
         # Si no se encuentra la enfermedad
         print("La enfermedad no se encuentra en la lista.")
+
+    # Creamos metodo para editar y actualizar los datos de la enfermedad
+    def editar_enfermedad(self, id_enf, nombre, descripcion):
+        # Buscamos la enfermedad que se va a editar
+        for enfermedad in Enfermedad.lista_enfermedades:
+            if enfermedad.id_enf == id_enf:
+                # Actualizamos los atributos solo si se proporcionan nuevos valores
+                # is not None = para verificar si que un valor no este vacio ni sea nulo
+                if nombre is not None:
+                    enfermedad.nombre = nombre
+                if descripcion is not None:
+                    enfermedad.descripcion = descripcion
+                
+                print("La enfermedad se actualizó correctamente.")
+                return
+        
+        # Si no se encuentra la enfermedad
+        print("La enfermedad no se encuentra en la lista.")

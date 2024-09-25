@@ -39,3 +39,25 @@ class DatosSalud:
         
         # Si no se encuentran los datos
         print("Los datos de salud no se encuentran en la lista.")
+
+    # Creamos metodo para editar y actualizar los datos del dato de salud
+    def editar_dato_salud(self, id_salud, id_user=None, altura=None, peso=None, presion=None):
+        # Buscamos el dato de salud que se va a editar
+        for datosSalud in DatosSalud.lista_datos_salud:
+            if datosSalud.id_salud == id_salud:
+                # Actualizamos los atributos solo si se proporcionan nuevos valores
+                # is not None = para verificar si que un valor no este vacio ni sea nulo
+                if id_user is not None:
+                    datosSalud.id_user = id_user
+                if altura is not None:
+                    datosSalud.altura = altura
+                if peso is not None:
+                    datosSalud.peso = peso
+                if presion is not None:
+                    datosSalud.presion = presion
+                
+                print("El dato de salud se actualizó correctamente.")
+                return
+        
+        # Si no se encuentra el dato de salud
+        print("El dato de salud no se encuentra en la lista.")
