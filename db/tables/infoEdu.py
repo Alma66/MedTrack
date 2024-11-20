@@ -14,7 +14,7 @@ class InfoEdu:
             id_info INTEGER PRIMARY KEY,
             titulo TEXT,
             contenido TEXT,
-            creditos INTEGER,
+            creditos TEXT,
             id_user INTEGER,
             FOREIGN KEY (id_user) REFERENCES usuarios(id_user)
         )

@@ -24,7 +24,7 @@ class Recordatorio:
             FOREIGN KEY (id_user) REFERENCES usuarios(id_user)
         )
         """)
-
+ 
     def insertar_recordatorio(self):
         self.cursor.execute("""
         INSERT INTO recordatorio (id_rec, hora, dosis, estado, frecuencia, id_user, id_med)
