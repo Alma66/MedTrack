@@ -1,4 +1,5 @@
 import unittest
+from datetime import datetime
 from db.conexion import Conexion
 from db.tables.usuario import Usuario
 
@@ -12,11 +13,16 @@ class TestUsuario(unittest.TestCase):
     def tearDown(self):
         # Cerrar la conexión después de cada prueba
         self.db.cerrar_conexion()
+    
+    def convertir_fecha(self, fecha_str):
+        # Convertir fecha de cadena (YYYY-MM-DD) a datetime.date
+        return datetime.strptime(fecha_str, "%Y-%m-%d").date()
         
     def test_insertar(self):
         # Creamos un usuario "falso" para la prueba
+        fecha_nac = self.convertir_fecha("1990-05-15")
         usuario = Usuario(self.db.cursor, id_user=1, nombre="Carlos", apellido="González", 
-                          fecha_nac="1990-05-15", sexo="M", mail="carlos.gonzalez@example.com", 
+                          fecha_nac=fecha_nac, sexo="M", mail="carlos.gonzalez@example.com", 
                           contraseña="123456")
         usuario.insertar_usuario()
 
@@ -30,8 +36,9 @@ class TestUsuario(unittest.TestCase):
 
     def test_editar(self):
         # Insertamos otro usuario "falso" para editarlo después
+        fecha_nac = self.convertir_fecha("1992-07-25")
         usuario = Usuario(self.db.cursor, id_user=2, nombre="Ana", apellido="Pérez", 
-                          fecha_nac="1992-07-25", sexo="F", mail="ana.perez@example.com", 
+                          fecha_nac=fecha_nac, sexo="F", mail="ana.perez@example.com", 
                           contraseña="password")
         usuario.insertar_usuario()
 
@@ -48,8 +55,9 @@ class TestUsuario(unittest.TestCase):
 
     def test_eliminar(self):
         # Insertamos otro usuario "falso" usuario para eliminarlo
+        fecha_nac = self.convertir_fecha("1985-11-10")
         usuario = Usuario(self.db.cursor, id_user=3, nombre="Juan", apellido="Martínez", 
-                          fecha_nac="1985-11-10", sexo="M", mail="juan.martinez@example.com", 
+                          fecha_nac=fecha_nac, sexo="M", mail="juan.martinez@example.com", 
                           contraseña="password123")
         usuario.insertar_usuario()
 
@@ -63,13 +71,15 @@ class TestUsuario(unittest.TestCase):
 
     def test_mostrar(self):
         # Insertamos algunos usuarios "falsos" para verificar que se muestren correctamente
+        fecha_nac1 = self.convertir_fecha("1980-12-12")
         usuario1 = Usuario(self.db.cursor, id_user=4, nombre="Luis", apellido="Díaz", 
-                           fecha_nac="1980-12-12", sexo="M", mail="luis.diaz@example.com", 
+                           fecha_nac=fecha_nac1, sexo="M", mail="luis.diaz@example.com", 
                            contraseña="password456")
         usuario1.insertar_usuario()
 
+        fecha_nac2 = self.convertir_fecha("1995-09-03")
         usuario2 = Usuario(self.db.cursor, id_user=5, nombre="Marta", apellido="Gómez", 
-                           fecha_nac="1995-09-03", sexo="F", mail="marta.gomez@example.com", 
+                           fecha_nac=fecha_nac2, sexo="F", mail="marta.gomez@example.com", 
                            contraseña="mypassword")
         usuario2.insertar_usuario()
 

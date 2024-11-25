@@ -8,12 +8,33 @@ from methods.grafico import Graficos
 from methods.enfermedad import Enfermedad
 from methods.datosSalud import DatosSalud
 from db.conexion import Conexion  
+from datetime import datetime
+from app.app_gui import App  # Importamos la clase de la GUI
+import tkinter as tk
+
+def convertir_fecha(fecha_str):
+    """Convierte una fecha en formato 'YYYY-MM-DD' a un objeto datetime.date."""
+    return datetime.strptime(fecha_str, "%Y-%m-%d").date()
 
 def main():
+    print("Selecciona una opción:")
+    print("1. Ejecutar en modo consola")
+    print("2. Ejecutar interfaz gráfica (Tkinter)")
+    opcion = input("Opción: ").strip()
+
+    if opcion == "1":
+        ejecutar_modo_consola()
+    elif opcion == "2":
+        ejecutar_gui()
+    else:
+        print("Opción no válida. Inténtalo de nuevo.")
+
+def ejecutar_modo_consola():
     conexion = Conexion("db/database.db")
 
     # Creamos las instancias de las clases
-    usuario1 = Usuario(id_user=1, nombre="Juan", apellido="Pérez", fecha_nac="1990-01-01", sexo="M", mail="juan@example.com", contraseña="password123")
+    fecha_nac_usuario1 = convertir_fecha("1990-01-01")
+    usuario1 = Usuario(id_user=1, nombre="Juan", apellido="Pérez", fecha_nac=fecha_nac_usuario1, sexo="M", mail="juan@example.com", contraseña="password123")
     sintoma1 = Sintoma(id_sintoma=1, nombre="Fiebre", descripcion="Temperatura alta")
     medicamento1 = Medicamento(id_med=1, nombre="Paracetamol", detalles="Para fiebre y dolor", efec_secun="Náuseas")
     recordatorio1 = Recordatorio(id_rec=1, hora="08:00", dosis="1 pastilla", estado="Activo", frecuencia="Diaria", id_user=1, id_med=1)
@@ -49,7 +70,7 @@ def main():
     # Usuario
     usuario1.nombre = "Nacho"
     usuario1.apellido = "Pérez"
-    usuario1.fecha_nac = "1991-02-02"
+    usuario1.fecha_nac = convertir_fecha("1991-02-02")
     usuario1.sexo = "M"
     usuario1.mail = "nacho@example.com"
     usuario1.contraseña = "newpassword123"
@@ -128,6 +149,12 @@ def main():
 
     # Cerramos la conexión
     conexion.cerrar_conexion()
+
+def ejecutar_gui():
+    conexion = Conexion("db/database.db")  # Conexión para usar en la GUI
+    root = tk.Tk()  # Crear la ventana principal de Tkinter
+    app = App(root, conexion)  # Pasar la conexión a la clase App
+    root.mainloop() 
 
 if __name__ == "__main__":
     main()

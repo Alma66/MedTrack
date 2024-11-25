@@ -33,6 +33,7 @@ class Conexion:
     # Métodos de inserción, deben recibir objetos para insertar los datos
     def insertar_usuario(self, usuario):
         from db.tables.usuario import Usuario
+        usuario.id_user = None 
         Usuario(self.cursor, usuario.id_user, usuario.nombre, usuario.apellido, usuario.fecha_nac, usuario.sexo, usuario.mail, usuario.contraseña).insertar_usuario()
 
     def insertar_sintoma(self, sintoma):
