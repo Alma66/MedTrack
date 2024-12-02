@@ -1,10 +1,12 @@
 import sys
 import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import tkinter as tk
 from tkinter import ttk
 from tkinter import font
 from tkinter import PhotoImage
 from gui_helpers import abrir_registro, abrir_inicio_sesion
+import admin_gui 
 
 class App:
     def __init__(self, root):
@@ -59,6 +61,16 @@ class App:
         # Botón para registrarse
         btn_registro = ttk.Button(frame_botones, text="Registrarse", command=abrir_registro)
         btn_registro.grid(row=0, column=1, padx=10)
+
+        # Botón para administrador
+        btn_admin = ttk.Button(frame_botones, text="Admin", command=self.abrir_admin)
+        btn_admin.grid(row=1, column=0, padx=10)
+
+    def abrir_admin(self):
+        """Función para abrir la página de administración."""
+        self.root.withdraw()  # Ocultar la ventana actual
+        admin_gui.main()  
+
 
 if __name__ == "__main__":
     root = tk.Tk()  # Crear la ventana principal

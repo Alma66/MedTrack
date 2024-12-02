@@ -19,7 +19,12 @@ def abrir_inicio():
     ventana_inicio = tk.Toplevel()
     app_inicio = InicioGUI(ventana_inicio)
 
-def abrir_main():
-    from main import main  
-    ventana_main = tk.Toplevel()
-    main(ventana_main) 
+def abrir_admin():
+    from admin_gui import AdminGUI
+    ventana_admin = tk.Toplevel()
+    AdminGUI(ventana_admin)
+
+def abrir_admin():
+    from admin_gui import AdminGUI  
+    ventana_admin = tk.Toplevel()
+    app_admin = AdminGUI(ventana_admin)
